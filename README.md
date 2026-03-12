@@ -10,6 +10,14 @@ npm install -g data-4-seo-cli
 
 Binary aliases: `dataforseo` and `dfs`.
 
+### Agent Skill
+
+Install the Claude Code skill for agent integration:
+
+```bash
+npx skills add https://github.com/giorgioliapakis/agent-skills --skill keyword-researcher
+```
+
 ## Setup
 
 ```bash
@@ -163,14 +171,6 @@ dfs volume "seo tools"          # hits API
 dfs volume "seo tools"          # cached - no API cost
 dfs volume "seo tools" --no-cache  # force fresh
 dfs --clear-cache               # purge all
-```
-
-## Agent Skill
-
-Install the Claude Code skill for agent integration:
-
-```bash
-npx skills add https://github.com/giorgioliapakis/agent-skills --skill keyword-researcher
 ```
 
 ## Why TSV?
