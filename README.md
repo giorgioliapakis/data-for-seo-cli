@@ -15,7 +15,7 @@ Binary aliases: `dataforseo` and `dfs`.
 Install the Claude Code skill for agent integration:
 
 ```bash
-npx skills add https://github.com/giorgioliapakis/agent-skills/tree/main/skills/keyword-researcher
+npx skills add https://github.com/giorgioliapakis/agent-skills/tree/main/skills/dfs-keyword-research
 ```
 
 ## Setup
