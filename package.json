@@ -1,6 +1,6 @@
 {
   "name": "data-4-seo-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Agent-first DataForSEO CLI for keyword research, SERP analysis, and competitor intelligence",
   "type": "module",
   "main": "dist/index.js",

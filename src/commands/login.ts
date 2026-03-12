@@ -6,13 +6,39 @@ import { DataForSeoClient } from '../lib/api-client.js';
 import { CacheManager } from '../lib/cache.js';
 import { getAuthSource } from '../utils/auth.js';
 
-function prompt(question: string): Promise<string> {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stderr });
+function prompt(question: string, hidden = false): Promise<string> {
   return new Promise(resolve => {
-    rl.question(question, answer => {
-      rl.close();
-      resolve(answer.trim());
-    });
+    if (hidden) {
+      process.stderr.write(question);
+      const stdin = process.stdin;
+      const wasRaw = stdin.isRaw;
+      stdin.setRawMode(true);
+      stdin.resume();
+      stdin.setEncoding('utf8');
+      let input = '';
+      const onData = (ch: string) => {
+        if (ch === '\n' || ch === '\r' || ch === '\u0004') {
+          stdin.setRawMode(wasRaw ?? false);
+          stdin.pause();
+          stdin.removeListener('data', onData);
+          process.stderr.write('\n');
+          resolve(input.trim());
+        } else if (ch === '\u0003') {
+          process.exit(130);
+        } else if (ch === '\u007f' || ch === '\b') {
+          input = input.slice(0, -1);
+        } else {
+          input += ch;
+        }
+      };
+      stdin.on('data', onData);
+    } else {
+      const rl = readline.createInterface({ input: process.stdin, output: process.stderr });
+      rl.question(question, answer => {
+        rl.close();
+        resolve(answer.trim());
+      });
+    }
   });
 }
 
@@ -44,7 +70,7 @@ export function registerLoginCommand(program: Command): void {
     } else {
       // Interactive mode
       login = await prompt('DataForSEO login (email): ');
-      const password = await prompt('DataForSEO password: ');
+      const password = await prompt('DataForSEO password: ', true);
       if (!login || !password) {
         process.stderr.write('Login and password are required.\n');
         process.exit(1);
