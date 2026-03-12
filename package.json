@@ -1,0 +1,49 @@
+{
+  "name": "data-4-seo-cli",
+  "version": "1.0.0",
+  "description": "Agent-first DataForSEO CLI for keyword research, SERP analysis, and competitor intelligence",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "dataforseo": "dist/index.js",
+    "dfs": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giorgioliapakis/data-for-seo-cli.git"
+  },
+  "homepage": "https://github.com/giorgioliapakis/data-for-seo-cli#readme",
+  "bugs": {
+    "url": "https://github.com/giorgioliapakis/data-for-seo-cli/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "dataforseo",
+    "seo",
+    "keyword-research",
+    "serp",
+    "cli",
+    "ai-agent",
+    "llm"
+  ]
+}
