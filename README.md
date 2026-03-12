@@ -165,6 +165,14 @@ dfs volume "seo tools" --no-cache  # force fresh
 dfs --clear-cache               # purge all
 ```
 
+## Agent Skill
+
+Install the Claude Code skill for agent integration:
+
+```bash
+npx skills add https://github.com/giorgioliapakis/agent-skills --skill keyword-researcher
+```
+
 ## Why TSV?
 
 JSON keys and brackets burn tokens. TSV is the most compact structured format - easy to parse, minimal overhead, fits more data in a context window. Ideal for AI agents and automation pipelines.
